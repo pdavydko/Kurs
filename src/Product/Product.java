@@ -1,5 +1,7 @@
 package Product;
 
+import java.util.Objects;
+
 public class Product {
 
     private String productName;
@@ -35,5 +37,34 @@ public class Product {
 
     public int getAmount() {
         return amount;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Double.compare(product.price, price) == 0 &&
+                Double.compare(product.weight, weight) == 0 &&
+                legal == product.legal &&
+                amount == product.amount &&
+                Objects.equals(productName, product.productName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productName, price, weight, legal, amount);
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productName='" + productName + '\'' +
+                ", price=" + price +
+                ", weight=" + weight +
+                ", legal=" + legal +
+                ", amount=" + amount +
+                '}';
     }
 }

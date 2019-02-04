@@ -10,11 +10,10 @@ public class CustomerControllerImpl implements CustomerController {
         Customer cast = new Customer(address, customerName, idGenerator());
         users.put(idGenerator(), cast);
     }
+//регистрация, добавление кастомеров в мап
 
     private Map<Integer, Customer> users = new HashMap<>();
-
-
-
+//создание мапы
 
     private int idGenerator(){
         int id;
@@ -26,10 +25,11 @@ public class CustomerControllerImpl implements CustomerController {
         }
         return id;
     }
+//генерация ID для мапы
 
     public Map <Integer, Customer> allCustomers(){
         Map <Integer, Customer> allCustomers = users;
         return allCustomers;
     }
-
+//вывод всех кастомеров
 }

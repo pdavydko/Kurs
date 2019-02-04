@@ -1,15 +1,19 @@
 package Product;
 
 
+import java.util.List;
+
 public interface ProductController {
 
-    void createProduct();
+    void createProduct(String pName, double pPrice, double pWeight, boolean pLegal, int pAmount);
 
-    void readProduct();
+    void readAllProducts();
 
-    void deleteProduct();
+    void readProduct(int pIndex);
 
-    void editProduct();
+    void deleteProduct(int pIndex);
+
+    void editProduct(Product pEditProd, int pIndex);
 
 
 }
