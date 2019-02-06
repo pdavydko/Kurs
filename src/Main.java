@@ -33,12 +33,29 @@ public class Main {
         produst.productController.createProduct("Alcohol", 1.5, 4.0, true, 160);
 //создание продуктов
 
-        produst.productController.readProduct(1);
+        System.out.println(produst.productController.readProduct(1));
+//вывод одного продукта по индексу
 
+        System.out.println(produst.productController.readAllProducts());
+//вывод всех продектов в листе
 
+        produst.productController.deleteProduct(3);
+//удаление продукта из листа по индексу
 
+        System.out.println(produst.productController.readAllProducts());
+//повторный вывод всех продуктов из листа для проверки удаления
 
+        produst.productController.editProduct("editCocaine", 8.2, 1.0, false, 9, 1);
+//изменяем первый продукт, изменили имя и amount
 
+        System.out.println(produst.productController.readProduct(1));
+//проверка что продукт изменился
+
+        System.out.println(produst.productController.legalProducts());
+//вывести список легальных продуктов
+
+        System.out.println(produst.productController.ilegalProducts());
+//вывести список нелегальных продуктов
 
     }
 }

@@ -1,7 +1,6 @@
 package Product;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class ProductControllerImpl implements ProductController {
@@ -19,18 +18,17 @@ public class ProductControllerImpl implements ProductController {
 
 
     @Override
-    public void readAllProducts() {
-        int min = 0;
-        int max = allProdusts.size();
-
-        allProdusts.subList(min, max);
+    public List<Product> readAllProducts() {
+        return allProdusts;
     }
 //возвращает все элементы в листе
 
 
     @Override
-    public void readProduct(int pIndex) {
-         allProdusts.get(pIndex);
+    public Product readProduct(int pIndex) {
+        Product pro = allProdusts.get(pIndex);
+
+        return pro;
     }
 //возвращает продукт по индексу в листе
 
@@ -40,14 +38,46 @@ public class ProductControllerImpl implements ProductController {
         allProdusts.remove(pIndex);
 
     }
-//удаляет продект по индексу в листе
+//удаляет продукт по индексу в листе
 
     @Override
-    public void editProduct(Product pEditProd, int pIndex) {
-        allProdusts.set(pIndex, pEditProd);
-
+    public void editProduct(String pName, double pPrice, double pWeight, boolean pLegal, int pAmount, int pIndex) {
+        Product editPro = new Product(pName, pPrice, pWeight, pLegal, pAmount);
+        allProdusts.set(pIndex, editPro);
     }
 //заменяет объект по индексу
 
 
+    @Override
+    public List<Product> legalProducts() {
+
+        List <Product> legalProducts = new ArrayList<Product>();
+
+        for (int n = 0; n<allProdusts.size(); n++){
+            Product pro = allProdusts.get(n);
+
+            if (pro.isLegal()==true){
+                legalProducts.add(pro);
+            }
+        }
+
+        return legalProducts;
+    }
+
+
+    @Override
+    public List<Product> ilegalProducts() {
+
+        List <Product> ilegalProducts = new ArrayList<Product>();
+
+        for (int n = 0; n<allProdusts.size(); n++){
+            Product pro = allProdusts.get(n);
+
+            if (pro.isLegal()==false){
+                ilegalProducts.add(pro);
+            }
+        }
+
+        return ilegalProducts;
+    }
 }
