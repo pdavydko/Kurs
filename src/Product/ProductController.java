@@ -15,9 +15,12 @@ public interface ProductController {
 
     void editProduct(String pName, double pPrice, double pWeight, boolean pLegal, int pAmount, int pIndex);
 
-    List<Product> legalProducts();
+    List<Product> sortLegalProducts();
 
-    List<Product> ilegalProducts();
+    List<Product> sortIlegalProducts();
+
+
+
 
 
 }

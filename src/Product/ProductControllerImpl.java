@@ -6,9 +6,6 @@ import java.util.List;
 public class ProductControllerImpl implements ProductController {
 
 
-    private List<Product> allProdusts = new ArrayList<Product>();
-    //создание листа с продуктами
-
     @Override
     public void createProduct(String pName, double pPrice, double pWeight, boolean pLegal, int pAmount) {
         Product prod = new Product(pName, pPrice, pWeight, pLegal, pAmount);
@@ -49,35 +46,40 @@ public class ProductControllerImpl implements ProductController {
 
 
     @Override
-    public List<Product> legalProducts() {
+    public List<Product> sortLegalProducts() {
 
-        List <Product> legalProducts = new ArrayList<Product>();
+        List <Product> sortLegalProducts = new ArrayList<Product>();
 
         for (int n = 0; n<allProdusts.size(); n++){
             Product pro = allProdusts.get(n);
 
             if (pro.isLegal()==true){
-                legalProducts.add(pro);
+                sortLegalProducts.add(pro);
             }
         }
 
-        return legalProducts;
+        return sortLegalProducts;
     }
 
 
     @Override
-    public List<Product> ilegalProducts() {
+    public List<Product> sortIlegalProducts() {
 
-        List <Product> ilegalProducts = new ArrayList<Product>();
+        List <Product> sortIlegalProducts = new ArrayList<Product>();
 
         for (int n = 0; n<allProdusts.size(); n++){
             Product pro = allProdusts.get(n);
 
             if (pro.isLegal()==false){
-                ilegalProducts.add(pro);
+                sortIlegalProducts.add(pro);
             }
         }
 
-        return ilegalProducts;
+        return sortIlegalProducts;
     }
+
+    private List<Product> allProdusts = new ArrayList<Product>();
+//создание листа с продуктами
+
+
 }
