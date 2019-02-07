@@ -15,52 +15,49 @@ public class main {
     public static void main(String[] args) {
 
 
-        main customer = new main();
+        main order = new main();
 
-        customer.customerController.registraton("Pavel", "NY");
-        customer.customerController.registraton("Pavel2", "NY2");
-        customer.customerController.registraton("Roman", "AU");
-        customer.customerController.registraton("Roman12", "AU2");
+        order.customerController.registraton("Pavel", "NY");
+        order.customerController.registraton("Pavel2", "NY2");
+        order.customerController.registraton("Roman", "AU");
+        order.customerController.registraton("Roman12", "AU2");
 //создание кастомеров
 
-        System.out.println("Все кастомеры" + customer.customerController.allCustomers());
+        System.out.println("Все кастомеры" + order.customerController.allCustomers());
 //вывести всех кастомеров
 
 
-        main produst = new main();
-
-        produst.productController.createProduct("LSD", 3.2, 1.2, false, 5);
-        produst.productController.createProduct("Cocaine", 8.2, 1.0, false, 10);
-        produst.productController.createProduct("Tobacco", 0.4, 0.2, true, 600);
-        produst.productController.createProduct("Alcohol", 1.5, 4.0, true, 160);
+        order.productController.createProduct("LSD", 3.2, 1.2, false, 5);
+        order.productController.createProduct("Cocaine", 8.2, 1.0, false, 10);
+        order.productController.createProduct("Tobacco", 0.4, 0.2, true, 600);
+        order.productController.createProduct("Alcohol", 1.5, 4.0, true, 160);
 //создание продуктов
 
-        System.out.println("один продук по индексу" + produst.productController.readProduct(1));
+        System.out.println("один продук по индексу" + order.productController.readProduct(1));
 //вывод одного продукта по индексу
 
-        System.out.println("все продукты в магазине" + produst.productController.readAllProducts());
+        System.out.println("все продукты в магазине" + order.productController.readAllProducts());
 //вывод всех продектов в листе
 
-        produst.productController.deleteProduct(3);
+        order.productController.deleteProduct(3);
 //удаление продукта из листа по индексу
 
-        System.out.println("все продукты в магазинепосле удаления одного" + produst.productController.readAllProducts());
+        System.out.println("все продукты в магазинепосле удаления одного" + order.productController.readAllProducts());
 //повторный вывод всех продуктов из листа для проверки удаления
 
-        produst.productController.editProduct("editCocaine", 8.2, 1.0, false, 9, 1);
+        order.productController.editProduct("editCocaine", 8.2, 1.0, false, 9, 1);
 //изменяем первый продукт, изменили имя и amount
 
-        System.out.println("тот же один продукт после изменения" + produst.productController.readProduct(1));
+        System.out.println("тот же один продукт после изменения" + order.productController.readProduct(1));
 //проверка что продукт изменился
 
-        System.out.println("сортировка, вывод легальных продуктов" + produst.productController.sortLegalProducts());
+        System.out.println("сортировка, вывод легальных продуктов" + order.productController.sortLegalProducts());
 //вывести список легальных продуктов
 
-        System.out.println("сортировка, вывод нелегальных продуктов" + produst.productController.sortIlegalProducts());
+        System.out.println("сортировка, вывод нелегальных продуктов" + order.productController.sortIlegalProducts());
 //вывести список нелегальных продуктов
 
 
-        main order = new main();
 
         order.orderController.addProductToOrder(0); //не работает
         order.orderController.addProductToOrder(1);

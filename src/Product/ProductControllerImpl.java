@@ -9,21 +9,21 @@ public class ProductControllerImpl implements ProductController {
     @Override
     public void createProduct(String pName, double pPrice, double pWeight, boolean pLegal, int pAmount) {
         Product prod = new Product(pName, pPrice, pWeight, pLegal, pAmount);
-        allProdusts.add(prod);
+        allproducts.add(prod);
     }
     //заполнение листа с продуктами
 
 
     @Override
     public List<Product> readAllProducts() {
-        return allProdusts;
+        return allproducts;
     }
 //возвращает все элементы в листе
 
 
     @Override
     public Product readProduct(int pIndex) {
-        Product pro = allProdusts.get(pIndex);
+        Product pro = allproducts.get(pIndex);
 
         return pro;
     }
@@ -32,7 +32,7 @@ public class ProductControllerImpl implements ProductController {
 
     @Override
     public void deleteProduct(int pIndex) {
-        allProdusts.remove(pIndex);
+        allproducts.remove(pIndex);
 
     }
 //удаляет продукт по индексу в листе
@@ -40,7 +40,7 @@ public class ProductControllerImpl implements ProductController {
     @Override
     public void editProduct(String pName, double pPrice, double pWeight, boolean pLegal, int pAmount, int pIndex) {
         Product editPro = new Product(pName, pPrice, pWeight, pLegal, pAmount);
-        allProdusts.set(pIndex, editPro);
+        allproducts.set(pIndex, editPro);
     }
 //заменяет объект по индексу
 
@@ -50,8 +50,8 @@ public class ProductControllerImpl implements ProductController {
 
         List <Product> sortLegalProducts = new ArrayList<Product>();
 
-        for (int n = 0; n<allProdusts.size(); n++){
-            Product pro = allProdusts.get(n);
+        for (int n = 0; n<allproducts.size(); n++){
+            Product pro = allproducts.get(n);
 
             if (pro.isLegal()==true){
                 sortLegalProducts.add(pro);
@@ -67,8 +67,8 @@ public class ProductControllerImpl implements ProductController {
 
         List <Product> sortIlegalProducts = new ArrayList<Product>();
 
-        for (int n = 0; n<allProdusts.size(); n++){
-            Product pro = allProdusts.get(n);
+        for (int n = 0; n<allproducts.size(); n++){
+            Product pro = allproducts.get(n);
 
             if (pro.isLegal()==false){
                 sortIlegalProducts.add(pro);
@@ -78,7 +78,7 @@ public class ProductControllerImpl implements ProductController {
         return sortIlegalProducts;
     }
 
-    private List<Product> allProdusts = new ArrayList<Product>();
+    private List<Product> allproducts = new ArrayList<Product>();
 //создание листа с продуктами
 
 

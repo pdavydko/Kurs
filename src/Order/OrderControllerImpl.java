@@ -20,7 +20,7 @@ public class OrderControllerImpl implements OrderController {
     public List<Product> addProductToOrder(int productIndex) {
 
         OrderControllerImpl prod = new OrderControllerImpl();
-        List<Product> allPro = prod.productController.readAllProducts();
+        List<Product> allPro = prod.productController.readAllProducts(); // тут нужно вытянуть список продуктов что мы создали в майне
 
         productsInOrder.add(allPro.get(productIndex));
 
