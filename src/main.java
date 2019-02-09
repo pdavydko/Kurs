@@ -26,6 +26,9 @@ public class main {
         System.out.println("Все кастомеры" + order.customerController.allCustomers());
 //вывести всех кастомеров
 
+        System.out.println(order.customerController.showOneCast(1));
+//вывести одного кастомера
+
 
         order.productController.createProduct("LSD", 3.2, 1.2, false, 5);
         order.productController.createProduct("Cocaine", 8.2, 1.0, false, 10);
@@ -59,28 +62,28 @@ public class main {
 
 
 
-        order.orderController.addProductToOrder(0); //не работает
-        order.orderController.addProductToOrder(1);
+        order.orderController.addProductToOrder(order.productController.readProduct(0));
+        order.orderController.addProductToOrder(order.productController.readProduct(1));
 //добавление продуктов в корзину
 
         System.out.println("все продукты что уже добавлены в коризну" + order.orderController.showAllProductsInOrder());
 //показать продукты что добавлены в корзину
 
-        order.orderController.createOrder(1);
+        order.orderController.createOrder(order.customerController.showOneCast(1));
 //в данной методе к выбранному юзеру прикрепляется лист с покупками, лист с покупками очищается в этом же методе,
 // все покупки перенесены в мапу
 
-        System.out.println("все покупатели и их заказы" + order.orderController.showAllProductsInOrder());
+        System.out.println("все покупатели и их заказы" + order.orderController.showCustomerOrder());
 //возвращает всех покупателей и их заказы
 
-        order.orderController.addProductToOrder(1);
-        order.orderController.addProductToOrder(2);
+        order.orderController.addProductToOrder(order.productController.readProduct(1));
+        order.orderController.addProductToOrder(order.productController.readProduct(2));
 //добавление продуктов в корзину для второго покупателя
 
-        order.orderController.createOrder(2);
+        order.orderController.createOrder(order.customerController.showOneCast(2));
 //прикрепили продекты к еще одному покупателю
 
-        System.out.println("все покупатели и их заказы после добавления еще одного покупателя" + order.orderController.showAllProductsInOrder());
+        System.out.println("все покупатели и их заказы после добавления еще одного покупателя" + order.orderController.showCustomerOrder());
 //еще рас возвращаем всех покупателей и их заказы
 
         order.orderController.cleanOrder();

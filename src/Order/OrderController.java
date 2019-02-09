@@ -9,11 +9,11 @@ import java.util.Map;
 
 public interface OrderController {
 
-    List<Product> addProductToOrder ( int productIndex);
+    List<Product> addProductToOrder ( Product pro);
 
     List<Product> showAllProductsInOrder();
 
-    Map<Customer, List> createOrder(int customerID);
+    Map<Customer, List> createOrder(Customer cast);
 
     Map<Customer, List> showCustomerOrder();
 

@@ -17,12 +17,9 @@ public class OrderControllerImpl implements OrderController {
 
 
     @Override
-    public List<Product> addProductToOrder(int productIndex) {
+    public List<Product> addProductToOrder(Product prod) {
 
-        OrderControllerImpl prod = new OrderControllerImpl();
-        List<Product> allPro = prod.productController.readAllProducts(); // тут нужно вытянуть список продуктов что мы создали в майне
-
-        productsInOrder.add(allPro.get(productIndex));
+        productsInOrder.add(prod);
 
         return productsInOrder;
     }
@@ -38,16 +35,11 @@ public class OrderControllerImpl implements OrderController {
 
 
     @Override
-    public Map<Customer, List> createOrder(int customerID) {
+    public Map<Customer, List> createOrder(Customer cast) {
 
-        OrderControllerImpl cust = new OrderControllerImpl();
-        Map <Integer, Customer> allCust = cust.customerController.allCustomers();
+            allProductsInOrder.put(cast, productsInOrder);
 
-        Customer selectedCustomer = allCust.get(customerID);
-
-        allProductsInOrder.put(selectedCustomer, productsInOrder);
-
-        productsInOrder.clear();
+            productsInOrder.clear();
 
         return allProductsInOrder;
     }

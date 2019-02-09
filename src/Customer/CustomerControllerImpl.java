@@ -4,32 +4,39 @@ import java.util.Map;
 
 public class CustomerControllerImpl implements CustomerController {
 
+    CustomerRepository customerRepository = new CustomerRepositoryImpl();
+
     @Override
     public void registraton(String customerName, String address) {
 
         Customer cast = new Customer(address, customerName, idGenerator());
-        users.put(idGenerator(), cast);
+        customerRepository.saveOrUpdate(cast);
     }
 //регистрация, добавление кастомеров в мап
 
-    private Map<Integer, Customer> users = new HashMap<>();
-//создание мапы
 
     private int idGenerator(){
         int id;
 
-        if(users.isEmpty()){
+        if(customerRepository.findAll().isEmpty()){
             return 0;
         }else{
-            id = users.size() +1;
+            id = allCustomers().size() +1;
         }
         return id;
     }
 //генерация ID для мапы
 
     public Map <Integer, Customer> allCustomers(){
-        Map <Integer, Customer> allCustomers = users;
+        Map <Integer, Customer> allCustomers = customerRepository.findAll();
         return allCustomers;
     }
 //вывод всех кастомеров
+
+
+    @Override
+    public Customer showOneCast(int id) {
+        Customer youCast = allCustomers().get(id);
+        return youCast;
+    }
 }
