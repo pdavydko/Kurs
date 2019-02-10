@@ -21,7 +21,7 @@ public class CustomerControllerImpl implements CustomerController {
         if(customerRepository.findAll().isEmpty()){
             return 0;
         }else{
-            id = allCustomers().size() +1;
+            id = allCustomers().size();
         }
         return id;
     }
@@ -36,7 +36,7 @@ public class CustomerControllerImpl implements CustomerController {
 
     @Override
     public Customer showOneCast(int id) {
-        Customer youCast = allCustomers().get(id);
+        Customer youCast = customerRepository.findById(id);
         return youCast;
     }
 }

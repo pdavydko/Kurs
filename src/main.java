@@ -26,7 +26,7 @@ public class main {
         System.out.println("Все кастомеры" + order.customerController.allCustomers());
 //вывести всех кастомеров
 
-        System.out.println(order.customerController.showOneCast(1));
+        System.out.println("Один кастомер по ID" + order.customerController.showOneCast(2));
 //вывести одного кастомера
 
 

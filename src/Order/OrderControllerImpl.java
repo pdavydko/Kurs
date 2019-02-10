@@ -3,6 +3,8 @@ package Order;
 import Customer.Customer;
 import Customer.CustomerControllerImpl;
 import Product.Product;
+
+import java.lang.invoke.ConstantCallSite;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,9 +39,13 @@ public class OrderControllerImpl implements OrderController {
     @Override
     public Map<Customer, List> createOrder(Customer cast) {
 
-            allProductsInOrder.put(cast, productsInOrder);
+        List <Product> timesProducts = productsInOrder;
+        List <Product> clearList = new ArrayList<Product>();
 
-            productsInOrder.clear();
+
+            allProductsInOrder.put(cast, timesProducts);
+
+            productsInOrder = clearList;
 
         return allProductsInOrder;
     }
