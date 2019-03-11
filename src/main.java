@@ -2,6 +2,8 @@ import Customer.CustomerControllerImpl;
 import Order.OrderControllerImpl;
 import Product.ProductControllerImpl;
 
+import javax.swing.filechooser.FileView;
+import java.io.File;
 import java.lang.reflect.Array;
 
 public class main {
@@ -81,13 +83,14 @@ public class main {
 //добавление продуктов в корзину для второго покупателя
 
         order.orderController.createOrder(order.customerController.showOneCast(2));
-//прикрепили продекты к еще одному покупателю
+//прикрепили продукты к еще одному покупателю
 
         System.out.println("все покупатели и их заказы после добавления еще одного покупателя" + order.orderController.showCustomerOrder());
 //еще рас возвращаем всех покупателей и их заказы
 
         order.orderController.cleanOrder();
 //очищаем всех и всё (: этот метод стоит привязать к кнопке "Заказать" после которого ордер отправляется к кастомеру
+
 
     }
 }

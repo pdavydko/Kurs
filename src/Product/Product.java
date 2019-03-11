@@ -8,15 +8,13 @@ public class Product {
     private double price;
     private double weight;
     private boolean legal;
-    private int amount;
 
 
-    public Product(String productName, double price, double weight, boolean legal, int amount) {
+    public Product(String productName, double price, double weight, boolean legal) {
         this.productName = productName;
         this.price = price;
         this.weight = weight;
         this.legal = legal;
-        this.amount = amount;
     }
 
     public String getProductName() {
@@ -35,10 +33,6 @@ public class Product {
         return legal;
     }
 
-    public int getAmount() {
-        return amount;
-    }
-
 
     @Override
     public boolean equals(Object o) {
@@ -48,13 +42,12 @@ public class Product {
         return Double.compare(product.price, price) == 0 &&
                 Double.compare(product.weight, weight) == 0 &&
                 legal == product.legal &&
-                amount == product.amount &&
                 Objects.equals(productName, product.productName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productName, price, weight, legal, amount);
+        return Objects.hash(productName, price, weight, legal);
     }
 
     @Override
@@ -64,7 +57,6 @@ public class Product {
                 ", price=" + price +
                 ", weight=" + weight +
                 ", legal=" + legal +
-                ", amount=" + amount +
                 '}';
     }
 }
