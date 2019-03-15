@@ -41,7 +41,18 @@ public class CustomerControllerImpl implements CustomerController {
         return youCast;
     }
 
+    @Override
+    public void findAll() {
+        customerRepository.findAll();
+    }
 
+    @Override
+    public void saveOrUpdate(Customer cust) {
+        customerRepository.saveOrUpdate(cust);
+    }
 
-
+    @Override
+    public void delete(int id) {
+        customerRepository.delete(id);
+    }
 }

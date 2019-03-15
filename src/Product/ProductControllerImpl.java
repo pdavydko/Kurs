@@ -6,10 +6,6 @@ public class ProductControllerImpl implements ProductController {
 
     ProductService productService = new ProductService();
 
-    @Override
-    public Product readProduct(int pIndex) {
-        return productService.readProduct(pIndex);
-    }
 
     @Override
     public List<Product> sortLegalProducts() {

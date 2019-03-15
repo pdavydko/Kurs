@@ -1,14 +1,18 @@
 package Product;
 
-import java.util.List;
+import java.util.Map;
 
 public interface ProductRepository {
 
     void createProduct(String pName, double pPrice, double pWeight, boolean pLegal);
 
-    void editProduct(String pName, double pPrice, double pWeight, boolean pLegal, int pIndex);
+    void editProduct(String pName, double pPrice, double pWeight, boolean pLegal, int id);
 
-    void deleteProduct(int pIndex);
+    void deleteProduct(int id); //refactor
+
+    Map<Integer, Product> getAllproducts ();
+
+    Product readProduct (int id);
 
 
 

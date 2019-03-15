@@ -3,20 +3,29 @@ package Order;
 
 import Customer.Customer;
 import Product.Product;
-
 import java.util.List;
 import java.util.Map;
 
+
+
+
+
 public interface OrderController {
 
-    List<Product> addProductToOrder ( Product pro);
+   List<Product> fillProductForOrder ( Product pro);
 
-    List<Product> showAllProductsInOrder();
+   Map<Customer, List> fillOrder(Customer cast);
 
-    Map<Customer, List> createOrder(Customer cast);
+    Map <Integer, Map> getAllOrders();
 
-    Map<Customer, List> showCustomerOrder();
+    Map <Customer, List> getOneOrder(int id);
 
-    void cleanOrder();
+    void createNewOrder();
+
+    void deleteOrder(int id);
+
+
+
+
 
 }

@@ -5,20 +5,16 @@ import java.util.Objects;
 public class Order {
 
     private int id;
-    private double finalPrice;
 
-    public Order(int id, double finalPrice) {
+
+
+    public Order(int id) {
         this.id = id;
-        this.finalPrice = finalPrice;
     }
 
 
     public int getId() {
         return id;
-    }
-
-    public double getFinalPrice() {
-        return finalPrice;
     }
 
 
@@ -27,22 +23,18 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return id == order.id &&
-                Double.compare(order.finalPrice, finalPrice) == 0;
+        return id == order.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, finalPrice);
+        return Objects.hash(id);
     }
-
 
     @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", finalPrice=" + finalPrice +
                 '}';
     }
-
 }

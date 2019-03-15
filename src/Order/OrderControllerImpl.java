@@ -13,68 +13,39 @@ import Product.ProductControllerImpl;
 
 public class OrderControllerImpl implements OrderController {
 
-    ProductControllerImpl productController = new ProductControllerImpl();
-    CustomerControllerImpl customerController = new CustomerControllerImpl();
-
-
-
-    @Override
-    public List<Product> addProductToOrder(Product prod) {
-
-        productsInOrder.add(prod);
-
-        return productsInOrder;
-    }
-//добавление продукта в заказ(ака корзину)
+    OrderRepository orderRepository = new OrderRepositoryImpl();
+    OrderService orderService = new OrderService();
 
 
     @Override
-    public List<Product> showAllProductsInOrder() {
-        return productsInOrder;
+    public List<Product> fillProductForOrder(Product pro) {
+        return orderService.fillProductForOrder(pro);
     }
-//показать все продукты что мы положили в корзину
-
-
 
     @Override
-    public Map<Customer, List> createOrder(Customer cast) {
-
-        List <Product> timesProducts = productsInOrder;
-        List <Product> clearList = new ArrayList<Product>();
-
-
-            allProductsInOrder.put(cast, timesProducts);
-
-            productsInOrder = clearList;
-
-        return allProductsInOrder;
+    public Map<Customer, List> fillOrder(Customer cast) {
+        return orderService.fillOrder(cast);
     }
-//в данной методе к выбранному юзеру прикрепляется лист с покупками, лист с покупками очищается в этом же методе,
-// все покупки перенесены в мапу
-
 
     @Override
-    public Map<Customer, List> showCustomerOrder() {
-        return allProductsInOrder;
+    public Map<Integer, Map> getAllOrders() {
+        return orderRepository.getAllOrders();
     }
-//возвращает всех покупателей и их заказы
 
     @Override
-    public void cleanOrder() {
-        allProductsInOrder.clear();
+    public Map<Customer, List> getOneOrder(int id) {
+        return orderRepository.getOneOrder(id);
     }
-//очистить заказ
 
+    @Override
+    public void createNewOrder() {
+        orderRepository.createNewOrder();
+    }
 
-    private List<Product> productsInOrder = new ArrayList<Product>();
-//создавние листа с нашими продуктами
-
-    private Map <Customer, List> allProductsInOrder = new HashMap<Customer, List>();
-//создание мапы нашего заказа
-
-
-
-
+    @Override
+    public void deleteOrder(int id) {
+        orderRepository.deleteOrder(id);
+    }
 
 
 }

@@ -1,37 +1,65 @@
 package Product;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class ProductRepositoryImpl implements ProductRepository {
 
-    private List<Product> allproducts = new ArrayList<Product>();
+    private Map<Integer, Product> allproducts = new TreeMap<Integer, Product>();
 
 
     @Override
     public void createProduct(String pName, double pPrice, double pWeight, boolean pLegal) {
-        Product prod = new Product(pName, pPrice, pWeight, pLegal);
-        allproducts.add(prod);
+
+        Product prod = new Product(pName, pPrice, pWeight, pLegal, idGenerator());
+
+        allproducts.put(prod.getId(), prod);
     }
     //заполнение листа с продуктами
 
-    @Override
-    public void editProduct(String pName, double pPrice, double pWeight, boolean pLegal, int pIndex) {
-        Product editPro = new Product(pName, pPrice, pWeight, pLegal);
-        allproducts.set(pIndex, editPro);
+
+
+    private int idGenerator(){
+        int id;
+
+        if(allproducts.isEmpty()){
+            return 0;
+        }else{
+            id = allproducts.size();
+        }
+        return id;
     }
-    //заменяет объект по индексу
+
+
 
     @Override
-    public void deleteProduct(int pIndex) {
-        allproducts.remove(pIndex);
+    public void editProduct(String pName, double pPrice, double pWeight, boolean pLegal, int id) {
+        Product editPro = new Product(pName, pPrice, pWeight, pLegal, id);
 
+        allproducts.put(id, editPro);
     }
-    //удаляет продукт по индексу в листе
+    //заменяет объект по ключу
 
 
-    public List<Product> getAllproducts() {
+
+    @Override
+    public void deleteProduct(int id) {
+        allproducts.remove(id);
+    }
+    //удаляет продукт
+
+
+    @Override
+    public Map<Integer, Product> getAllproducts() {
         return allproducts;
+    }
+
+
+    @Override
+    public Product readProduct(int id) {
+        Product p = allproducts.get(id);
+
+        return p;
     }
 
     

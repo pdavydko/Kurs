@@ -6,6 +6,12 @@ public interface CustomerController {
 
     Customer showOneCast (int id);
 
+    void findAll();
+
+    void saveOrUpdate(Customer cust);
+
+    void delete(int id);
+
 
 
 

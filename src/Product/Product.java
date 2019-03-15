@@ -8,13 +8,15 @@ public class Product {
     private double price;
     private double weight;
     private boolean legal;
+    private int id;
 
 
-    public Product(String productName, double price, double weight, boolean legal) {
+    public Product(String productName, double price, double weight, boolean legal, int id) {
         this.productName = productName;
         this.price = price;
         this.weight = weight;
         this.legal = legal;
+        this.id = id;
     }
 
     public String getProductName() {
@@ -33,6 +35,9 @@ public class Product {
         return legal;
     }
 
+    public int getId() {
+        return id;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -42,13 +47,15 @@ public class Product {
         return Double.compare(product.price, price) == 0 &&
                 Double.compare(product.weight, weight) == 0 &&
                 legal == product.legal &&
+                id == product.id &&
                 Objects.equals(productName, product.productName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productName, price, weight, legal);
+        return Objects.hash(productName, price, weight, legal, id);
     }
+
 
     @Override
     public String toString() {
@@ -57,6 +64,7 @@ public class Product {
                 ", price=" + price +
                 ", weight=" + weight +
                 ", legal=" + legal +
+                ", id=" + id +
                 '}';
     }
 }

@@ -2,17 +2,13 @@ package Product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class ProductService {
 
     ProductRepositoryImpl productRepository = new ProductRepositoryImpl();
 
-
-    public Product readProduct(int pIndex) {
-        List<Product> pro = productRepository.getAllproducts();
-
-        return pro.get(pIndex);
-    }
 
 
     public List<Product> sortLegalProducts() {
