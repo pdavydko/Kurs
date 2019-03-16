@@ -2,9 +2,7 @@ import Customer.CustomerControllerImpl;
 import Order.OrderControllerImpl;
 import Product.ProductControllerImpl;
 
-import javax.swing.filechooser.FileView;
-import java.io.File;
-import java.lang.reflect.Array;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class main {
@@ -15,16 +13,20 @@ public class main {
     OrderControllerImpl orderController = new OrderControllerImpl();
 
 
-    public static void main(String[] args) {
+    private void init() throws IOException {
+        customerController.loadStateCustomer();
+        productController.loadStateProduct();
+//        orderController.loadStateOrder();
+    }
+
+
+    public static void main(String[] args) throws IOException {
 
         main brain = new main();
+        brain.init();
 
 
-        File fileCustomer = new File("Files/CustomerFile.txt");
-        File fileProduct = new File("Files/ProductFile.txt");
-        File fileOrder = new File("Files/OrderFile.txt");
-//// ?????????????????????????????????
-
+         brain.productController.createProduct("Banana", 1.2, 2.2); //тестовое создание продукта
 
         Scanner scanner = new Scanner(System.in);
 
@@ -33,19 +35,19 @@ public class main {
                 " \n В любой момент введите:'exit' чтобы начать всё сначала.");
 
 
-        while(scanner.hasNext()) {
+        while (scanner.hasNext()) {
 
             String s1 = scanner.nextLine();
-            if(s1.equals("exit")) {
+            if (s1.equals("exit")) {
                 break;
             }
 
-            if(s1.equals("reg")){
+            if (s1.equals("reg")) {
                 System.out.println("Добро пожаловать в меню регистрации! \n Пожалуйста, введите своё имя, поставьте пробел и напишите адрес. \n" +
                         " *Имя и адрес не должны содержать пробелов, если вам необходимо разделить слова воспользуйтесь '_'.");
 
                 String s2 = scanner.nextLine();
-                if(s2.equals("exit")) {
+                if (s2.equals("exit")) {
                     break;
                 }
 
@@ -62,61 +64,76 @@ public class main {
                 break;
             } else {
 
-                if (s1.equals("log")){
+                if (s1.equals("log")) {
                     System.out.println("Добро пожаловать! Выберите ваш аккаунт. Для выбора просто напишите ID вашего аккаунта. \n " +
-                            "Если нет ни одного аккаунта, введите '0', вернитесь, создайте аккаунт.");
+                            "Если нет ни одного аккаунта, введите '-1', вернитесь, создайте аккаунт.");
 
                     System.out.println(brain.customerController.allCustomers());
 
                     int s2 = scanner.nextInt();
-                    if(s2 == 0) {
+                    if (s2 == -1) {
                         break;
                     }
 
-                    System.out.println("Добро пожаловать в систему "+ brain.customerController.showOneCast(s2));
+                    System.out.println("Добро пожаловать в систему " + brain.customerController.showOneCast(s2).getCustomerName() +
+                            "\n Для добавления нового товара в магазин напишите 'add'. \n" +
+                            " Для просмотра всех товаров в магазине напишите 'show'. \n" +
+                            " Для перехода в меню составления заказа напишите 'order'. \n" +
+                            " Если вы хотите выйти - напиште 'exit'.");
 
-                    /////
+                    String s3 = scanner.next();
 
 
+                    if (s3.equals("add")){
 
-                }else {
-                    System.out.println("Вы ввели неверное значение. Попробуйте ещё");
+                        System.out.println("Чтобы добавить новый продукт, напишите следующие параметры через пробел: \n" +
+                                " Имя Цена Вес. \n*Цена и вес пишется в дробном формате, например:'5.5'.");
+
+                        String s4 = scanner.next();
+
+
+                        String[] parts = s4.split(" ");
+
+                        String pName = parts[0];
+                        String pPrice = parts[1];
+                        String pWeight = parts[2];
+
+                        double price = Double.parseDouble(pPrice);
+                        double weight = Double.parseDouble(pWeight);
+
+                        brain.productController.createProduct(pName, price, weight);
+                        System.out.println("Новый продукт успешно создан!");
+
+
+                    } else {
+
+                        if (s3.equals("show")) {
+
+                            //show all products
+                            System.out.println("show");
+
+
+                        } else {
+                            if (s3.equals("order")) {
+                                ////order
+                                System.out.println("order");
+
+                            }
+                        }
+
+
+                    }
+
+
                 }
             }
-
-
-
-
-
-
-
-
-
-
         }
 
 
+    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 
@@ -217,5 +234,6 @@ public class main {
 ////очищаем всех и всё (: этот метод стоит привязать к кнопке "Заказать" после которого ордер отправляется к кастомеру
 
 
-    }
-}
+
+
+

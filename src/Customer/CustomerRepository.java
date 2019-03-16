@@ -1,6 +1,6 @@
 package Customer;
 
-import java.util.List;
+import java.io.IOException;
 import java.util.Map;
 
 public interface CustomerRepository {
@@ -9,9 +9,17 @@ public interface CustomerRepository {
 
     Customer findById (int id);
 
-    void saveOrUpdate(Customer entity);
+    void saveOrUpdate(Customer entity) throws IOException;
 
     void delete(int id);
+
+    void loadState() throws IOException;
+
+    void countSave() throws IOException;
+
+//    void loadID() throws FileNotFoundException;
+
+
 
 
 

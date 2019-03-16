@@ -1,6 +1,6 @@
 package Customer;
 
-import java.util.HashMap;
+import java.io.IOException;
 import java.util.Map;
 
 public class CustomerControllerImpl implements CustomerController {
@@ -8,7 +8,7 @@ public class CustomerControllerImpl implements CustomerController {
     CustomerRepository customerRepository = new CustomerRepositoryImpl();
 
     @Override
-    public void registraton(String customerName, String address) {
+    public void registraton(String customerName, String address) throws IOException {
 
         Customer cast = new Customer(address, customerName, idGenerator());
         customerRepository.saveOrUpdate(cast);
@@ -29,8 +29,8 @@ public class CustomerControllerImpl implements CustomerController {
 //генерация ID для мапы
 
     public Map <Integer, Customer> allCustomers(){
-        Map <Integer, Customer> allCustomers = customerRepository.findAll();
-        return allCustomers;
+//        Map <Integer, Customer> allCustomers = customerRepository.findAll();
+        return customerRepository.findAll();
     }
 //вывод всех кастомеров
 
@@ -47,12 +47,17 @@ public class CustomerControllerImpl implements CustomerController {
     }
 
     @Override
-    public void saveOrUpdate(Customer cust) {
+    public void saveOrUpdate(Customer cust) throws IOException {
         customerRepository.saveOrUpdate(cust);
     }
 
     @Override
     public void delete(int id) {
         customerRepository.delete(id);
+    }
+
+    @Override
+    public void loadStateCustomer() throws IOException {
+        customerRepository.loadState();
     }
 }

@@ -1,15 +1,23 @@
 package Product;
 
 
-import java.util.List;
+import java.io.IOException;
+import java.util.Map;
 
 public interface ProductController {
 
 
-    List<Product> sortLegalProducts();
+    void createProduct(String pName, double pPrice, double pWeight) throws IOException;
 
-    List<Product> sortIlegalProducts();
+    void editProduct(String pName, double pPrice, double pWeight, int id);
 
+    void deleteProduct(int id); //refactor
+
+    Map<Integer, Product> getAllproducts ();
+
+    Product readProduct (int id);
+
+    void loadStateProduct() throws IOException;
 
 
 
